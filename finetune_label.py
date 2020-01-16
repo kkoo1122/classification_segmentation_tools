@@ -1,4 +1,5 @@
 import cv2
+import os
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -6,9 +7,11 @@ from glob import glob
 
 from IPython import embed
 
+f_path = './png'
 
-for filename in glob('./train/*.png'):
-    print(filename[7:])
+for filename in glob(os.path.join(f_path,'*.png')):
+    f_name = filename[len(f_path)+1:]
+    print(f_name)
     img = cv2.imread(filename)    
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     
@@ -23,12 +26,12 @@ for filename in glob('./train/*.png'):
     
     #plt.imshow(img_gray)
     #plt.show()
-    #cv2.imshow('label',img)
-    #cv2.waitKey(0)
+    #cv2.imshow('label',img_gray)
+    #cv2.waitKey(1)
     #cv2.destroyAllWindows()
     
-    filnames_new = '/media/kevintsai/cef8b40c-14d2-4a8f-a359-9da3eeceb1d4/Projects/potato/images_new/gtFine'+filename[1:]
-    cv2.imwrite(filnames_new, img_gray)
+    filenames_new = '/media/kevintsai/cef8b40c-14d2-4a8f-a359-9da3eeceb1d4/Projects/potato/Work/potato_masks/gtFine/'+f_name
+    status = cv2.imwrite(filenames_new, img_gray)
     
     """
     newlabel = cv2.imread(filnames_new)
@@ -39,5 +42,3 @@ for filename in glob('./train/*.png'):
     plt.imshow(newlabel)
     plt.show()
     """
-    
-embed()
