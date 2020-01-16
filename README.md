@@ -1,1 +1,1 @@
-- This repos contains varies tools that is helpful for segmentation or classification.
+- This repo contains varies tools that is helpful for segmentation or classification.
